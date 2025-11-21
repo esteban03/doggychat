@@ -4,12 +4,7 @@ import { useMemo } from 'react';
 import ChatArea from './_components/ChatArea';
 import ChatInput from './_components/ChatInput';
 import { useStream, FetchStreamTransport } from "@langchain/langgraph-sdk/react";
-
-interface Message {
-  id: number;
-  text: string;
-  timestamp: Date;
-}
+import { Message } from '@/app/chat/types';
 
 export default function Page() {
     const transport = useMemo(() => {
@@ -21,13 +16,14 @@ export default function Page() {
 
     const stream = useStream({transport})
 
-    const messages = useMemo(() => {
+    const messages = useMemo((): Message[] => {
         if (!stream.messages) return [];
 
         return stream.messages.map((m, index) => ({
             id: index,
             text: typeof m.content === 'string' ? m.content : JSON.stringify(m.content),
             timestamp: new Date(),
+            type: m.type,
         }));
     }, [stream.messages]);
 
