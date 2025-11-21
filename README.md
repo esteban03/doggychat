@@ -1,207 +1,215 @@
-# 🐕 Chat con IA usando Next.js y LangGraph
+# 🐕 AI Chat using Next.js and LangGraph
 
-> Un proyecto simple y educativo para aprender a crear interfaces de chat con LLMs usando streaming en tiempo real.
+> A simple educational project to learn how to create chat interfaces with LLMs using real-time streaming.
 
-**En este ejemplo:** El chat funciona como un asesor experto en razas de perros que te ayuda a elegir el perrito perfecto según tu personalidad y estilo de vida.
+**In this example:** The chat works as an expert advisor on dog breeds that helps you choose the perfect puppy based on your personality and lifestyle.
 
-Este proyecto es perfecto para **aprender** cómo integrar modelos de lenguaje (como GPT de OpenAI) en una aplicación web moderna con **Next.js** y el ecosistema de **LangChain/LangGraph**.
+This project is perfect for **learning** how to integrate language models (like OpenAI's GPT) into a modern web application with **Next.js** and the **LangChain/LangGraph** ecosystem.
 
-## 🎯 ¿Qué aprenderás?
+## 🎯 What will you learn?
 
-- ✅ Cómo crear una interfaz de chat con React
-- ✅ Cómo implementar streaming en tiempo real (las respuestas aparecen palabra por palabra)
-- ✅ Cómo usar LangGraph SDK para conectar fácilmente con agentes de IA
-- ✅ Cómo crear una API en Next.js que maneja LLMs
-- ✅ Cómo usar TypeScript en proyectos con IA
+- ✅ How to create a chat interface with React
+- ✅ How to implement real-time streaming (responses appear word by word)
+- ✅ How to use LangGraph SDK to easily connect with AI agents
+- ✅ How to create an API in Next.js that handles LLMs
+- ✅ How to use TypeScript in AI projects
 
-## 🛠️ Empezar es fácil
+## 🛠️ Getting Started is Easy
 
-### Requisitos previos
-- Node.js instalado (cree este proyecto con la versión v23.11.0)
-- Una cuenta en OpenAI con una API key ([consíguela aquí](https://platform.openai.com/api-keys))
+### Prerequisites
+- Node.js installed (version 18 or higher)
+- An OpenAI account with an API key ([get one here](https://platform.openai.com/api-keys))
 
-### Instalación
+### Installation
 
-**1. Clona el repositorio:**
+**1. Clone the repository:**
 ```bash
-git clone <tu-repo-url>
+git clone <your-repo-url>
 cd nextjs-api
 ```
 
-**2. Instala las dependencias:**
+**2. Install dependencies:**
 ```bash
 npm install
 ```
 
-**3. Configura tu API key:**
+**3. Configure your API key:**
 
-Crea un archivo `.env.local` en la raíz del proyecto:
+Create a `.env.local` file in the project root:
 ```env
-OPENAI_API_KEY=sk-tu_api_key_aqui
+OPENAI_API_KEY=sk-your_api_key_here
 ```
 
-⚠️ **Importante:** Nunca compartas tu API key. El archivo `.env` está en `.gitignore` para protegerla.
+⚠️ **Important:** Never share your API key. The `.env.local` file is in `.gitignore` to protect it.
 
-**4. Inicia el proyecto:**
+**4. Start the project:**
 ```bash
 npm run dev
 ```
 
-**5. Abre tu navegador:**
-Ve a [http://localhost:3000/chat](http://localhost:3000/chat) y empieza a chatear con el asesor de perros 🐕🎉
+**5. Open your browser:**
+Go to [http://localhost:3000/chat](http://localhost:3000/chat) and start chatting with the dog advisor 🐕🎉
 
-Prueba preguntas como:
-- "¿Qué raza de perro es buena para un apartamento pequeño?"
-- "Busco un perro activo para hacer ejercicio"
-- "¿Cuál es la mejor raza para familias con niños?"
+Try questions like:
+- "What dog breed is good for a small apartment?"
+- "I'm looking for an active dog for exercising"
+- "What's the best breed for families with children?"
 
-## 📂 Estructura del Proyecto (simple)
+## 📂 Project Structure (simple)
 
 ```
 nextjs-api/
 ├── app/
-│   ├── api/llm/              # Backend: aquí vive el agente de IA
-│   │   ├── agent.ts          # Configuración del agente LangGraph
-│   │   └── route.ts          # API endpoint que recibe los mensajes
+│   ├── api/llm/              # Backend: the AI agent lives here
+│   │   ├── agent.ts          # LangGraph agent configuration
+│   │   └── route.ts          # API endpoint that receives messages
 │   │
-│   └── chat/                 # Frontend: la interfaz del chat
-│       ├── _components/      # Componentes React del chat
-│       │   ├── ChatArea.tsx      # Área donde aparecen los mensajes
-│       │   ├── ChatInput.tsx     # Input para escribir mensajes
-│       │   └── Message.tsx       # Componente de un mensaje individual
-│       ├── page.tsx          # Página principal del chat
-│       └── types.ts          # Tipos TypeScript
+│   └── chat/                 # Frontend: the chat interface
+│       ├── _components/      # React chat components
+│       │   ├── ChatArea.tsx      # Area where messages appear
+│       │   ├── ChatInput.tsx     # Input to write messages
+│       │   └── Message.tsx       # Individual message component
+│       ├── page.tsx          # Main chat page
+│       └── types.ts          # TypeScript types
 │
-├── .env.example               # Tu API key (no se sube a GitHub)
+├── .env.local               # Your API key (not uploaded to GitHub)
 └── package.json
 ```
 
-## 🔍 ¿Cómo funciona? (explicación simple)
+## 🔍 How does it work? (simple explanation)
 
-### El flujo completo:
+### The complete flow:
 
 ```
-Usuario escribe mensaje
+User writes message
     ↓
-ChatInput captura el texto
+ChatInput captures the text
     ↓
-Se envía a /api/llm mediante POST
+Sent to /api/llm via POST
     ↓
-El agente LangGraph procesa con OpenAI
+LangGraph agent processes with OpenAI
     ↓
-La respuesta se envía como "stream" (poco a poco)
+Response is sent as a "stream" (little by little)
     ↓
-useStream del SDK actualiza la UI automáticamente
+SDK's useStream updates the UI automatically
     ↓
-El usuario ve la respuesta aparecer palabra por palabra ✨
+User sees the response appear word by word ✨
 ```
 
-### Las piezas clave del SDK de LangGraph
+### Key pieces of the LangGraph SDK
 
-Este proyecto usa el **LangGraph SDK para React** que hace el trabajo pesado por ti. Aquí están las 2 piezas principales:
+This project uses the **LangGraph SDK for React** which does the heavy lifting for you. Here are the 2 main pieces:
 
-#### 1️⃣ `FetchStreamTransport` - Conecta con el servidor
+#### 1️⃣ `FetchStreamTransport` - Connects to the server
 
 ```typescript
 const transport = new FetchStreamTransport({
-    apiUrl: "/api/llm",  // Tu API que maneja el chat
+    apiUrl: "/api/llm",  // Your API that handles the chat
 })
 ```
 
-Esto configura la conexión entre tu React y el servidor. Maneja automáticamente:
-- Las peticiones HTTP
-- El streaming de datos
-- Los errores y reconexiones
+This configures the connection between your React app and the server. It automatically handles:
+- HTTP requests
+- Data streaming
+- Errors and reconnections
 
-#### 2️⃣ `useStream` - El hook mágico de React
+#### 2️⃣ `useStream` - The magical React hook
 
 ```typescript
 const stream = useStream({ transport })
 ```
 
-Este hook te da:
-- **`stream.messages`**: Array con todos los mensajes (se actualiza solo cuando llegan nuevos)
-- **`stream.submit()`**: Función para enviar un nuevo mensaje
+This hook gives you:
+- **`stream.messages`**: Array with all messages (updates automatically when new ones arrive)
+- **`stream.submit()`**: Function to send a new message
 
-**Ejemplo de uso real:**
+**Real usage example:**
 
 ```typescript
-// Obtener los mensajes actuales
-const messages = stream.messages; // [{content: "Hola", type: "human"}, ...]
+// Get current messages
+const messages = stream.messages; // [{content: "Hello", type: "human"}, ...]
 
-// Enviar un nuevo mensaje
+// Send a new message
 stream.submit({
-    messages: [{ content: "¿Qué razas de perro son buenas para familias?", type: "human" }]
+    messages: [{ content: "What dog breeds are good for families?", type: "human" }]
 });
 ```
 
-¡Eso es todo! No necesitas manejar fetch, EventSource, ni nada complicado. El SDK lo hace por ti.
+That's it! You don't need to handle fetch, EventSource, or anything complicated. The SDK does it for you.
 
-## 🎨 Personaliza el agente
+## 🎨 Customize the agent
 
-### Cambiar el tema del chat
+### Change the chat topic
 
-Por defecto, el agente es un **asesor de razas de perros**. Puedes cambiarlo a cualquier tema que quieras.
+By default, the agent is a **dog breed advisor**. You can change it to any topic you want.
 
-Abre `app/api/llm/agent.ts` y modifica el `systemPrompt`:
+Open `app/api/llm/agent.ts` and modify the `systemPrompt`:
 
 ```typescript
 const agent = createAgent({
     model: model,
     checkpointer,
-    systemPrompt: "Eres un asistente experto en razas de perros...", // 👈 Cambia esto
+    systemPrompt: "You are an expert assistant on dog breeds...", // 👈 Change this
 })
 ```
 
-**Ejemplos de otros temas:**
-- Chef experto: `"Eres un chef profesional que ayuda con recetas y técnicas de cocina"`
-- Tutor de programación: `"Eres un tutor paciente que enseña programación a principiantes"`
-- Asesor de viajes: `"Eres un experto en viajes que recomienda destinos personalizados"`
+**Examples of other topics:**
+- Expert chef: `"You are a professional chef who helps with recipes and cooking techniques"`
+- Programming tutor: `"You are a patient tutor who teaches programming to beginners"`
+- Travel advisor: `"You are a travel expert who recommends personalized destinations"`
 
-### Cambiar el modelo de OpenAI
+### Change the OpenAI model
 
 ```typescript
 const model = new ChatOpenAI({
-    model: "gpt-4", // Opciones: "gpt-4", "gpt-3.5-turbo", etc.
+    model: "gpt-4", // Options: "gpt-4", "gpt-3.5-turbo", etc.
 });
 ```
 
-## 🚀 Ideas para seguir aprendiendo
+## 🚀 Ideas to keep learning
 
-Una vez que entiendas cómo funciona, intenta agregar:
+Once you understand how it works, try adding:
 
-1. **Historial de conversaciones**: Guarda las conversaciones en una base de datos
-2. **Diferentes agentes**: Crea múltiples agentes con diferentes personalidades
-3. **Markdown**: Renderiza las respuestas con formato (negritas, listas, código)
-4. **Modo oscuro**: Agrega un botón para cambiar el tema
-5. **Streaming visual**: Muestra un indicador cuando la IA está "escribiendo"
+1. **Conversation history**: Save conversations in a database
+2. **Different agents**: Create multiple agents with different personalities
+3. **Markdown**: Render responses with formatting (bold, lists, code)
+4. **Dark mode**: Add a button to switch themes
+5. **Visual streaming**: Show an indicator when the AI is "typing"
 
-## 📚 Recursos para aprender más
+## 📚 Resources to learn more
 
-### Documentación oficial:
-- [Next.js](https://nextjs.org/docs) - Framework web
-- [LangChain JS](https://js.langchain.com/) - Framework para LLMs
-- [LangGraph](https://langchain-ai.github.io/langgraph/) - Crear grafos de agentes complejos
-- [LangGraph SDK](https://github.com/langchain-ai/langgraph-sdk) - Kit de herramientas para js/typescript
-- [useStream Hook](https://docs.langchain.com/langsmith/use-stream-react) - Documentación del hook
+### Official documentation:
+- [Next.js](https://nextjs.org/docs) - Web framework
+- [LangChain JS](https://js.langchain.com/) - Framework for LLMs
+- [LangGraph](https://langchain-ai.github.io/langgraph/) - Create agents with memory
+- [LangGraph SDK](https://github.com/langchain-ai/langgraph-sdk) - React integration
+- [useStream Hook](https://docs.langchain.com/langsmith/use-stream-react) - Hook documentation
 
-### Tutoriales recomendados:
-- [Tutorial de streaming con LangChain (video)](https://www.youtube.com/watch?v=piK5WTXAEAQ&t=284s)
+### Recommended tutorials:
+- [Streaming tutorial with LangChain (video)](https://www.youtube.com/watch?v=piK5WTXAEAQ&t=284s)
 
-## 💡 Tecnologías usadas
+## 💡 Technologies used
 
-- **Next.js 16**
-- **LangChain**
-- **LangGraph**
-- **LangGraph SDK**
-- **OpenAI**
-- **TypeScript**
-- **Tailwind CSS**
+- **Next.js 16** - Modern React framework
+- **LangChain** - To work with LLMs
+- **LangGraph** - Agents with state and memory
+- **LangGraph SDK** - Easy React integration
+- **OpenAI** - The GPT model
+- **TypeScript** - JavaScript with types
+- **Tailwind CSS** - Modern styling
 
-## ⚠️ Notas importantes
+## ⚠️ Important notes
 
-- **API Key**: Nunca subas tu API key a GitHub ni la compartas públicamente.
-- **Producción**: Este es un proyecto educativo. Para producción necesitarías agregar muchas mas cosas.
+- **Costs**: Using the OpenAI API has costs. Check pricing on their official page.
+- **API Key**: Never upload your API key to GitHub or share it publicly.
+- **Production**: This is an educational project. For production you would need to add authentication, usage limits, etc.
 
+## 🤝 Contributions
 
-**¿Te sirvió el proyecto?** Dale una ⭐ para ayudar a otros a encontrarlo.
+If you find ways to improve this educational project, pull requests are welcome!
+
+---
+
+**Questions?** Open an issue in the repository.
+
+**Did this project help you?** Give it a ⭐ to help others find it.
