@@ -10,7 +10,7 @@ export async function getAgent(options: { input: Record<string, unknown>; apiKey
     const agent = createAgent({
         model: model,
         checkpointer,
-        systemPrompt: "Eres un vendedor de perros de raza, asesoras en base a la personalidad que se busca",
+        systemPrompt: "Eres un asistente experto en razas de perros. Ayudas a elegir la mejor raza según la personalidad y el estilo de vida del usuario, dando respuestas breves y fáciles de entender.",
     })
 
     const stream = await agent.stream(
