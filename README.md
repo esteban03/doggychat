@@ -1,8 +1,8 @@
-# 🐕 AI Chat using Next.js and LangGraph
+# 🐕 DoggyChat - AI Chat using Next.js and LangGraph
 
 > A simple educational project to learn how to create chat interfaces with LLMs using real-time streaming.
 
-**In this example:** The chat works as an expert advisor on dog breeds that helps you choose the perfect puppy based on your personality and lifestyle.
+**DoggyChat** is an AI-powered chat that works as an expert advisor on dog breeds, helping you choose the perfect puppy based on your personality and lifestyle.
 
 This project is perfect for **learning** how to integrate language models (like OpenAI's GPT) into a modern web application with **Next.js** and the **LangChain/LangGraph** ecosystem.
 
@@ -25,7 +25,7 @@ This project is perfect for **learning** how to integrate language models (like 
 **1. Clone the repository:**
 ```bash
 git clone <your-repo-url>
-cd nextjs-api
+cd doggychat
 ```
 
 **2. Install dependencies:**
@@ -58,7 +58,7 @@ Try questions like:
 ## 📂 Project Structure (simple)
 
 ```
-nextjs-api/
+doggychat/
 ├── app/
 │   ├── api/llm/              # Backend: the AI agent lives here
 │   │   ├── agent.ts          # LangGraph agent configuration
