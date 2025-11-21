@@ -5,7 +5,10 @@ import {LangGraphRunnableConfig, MemorySaver} from "@langchain/langgraph"
 const checkpointer = new MemorySaver();
 
 export async function getAgent(options: { input: Record<string, unknown>; apiKey: string; config: LangGraphRunnableConfig }) {
-    const model = new ChatOpenAI({model: "gpt-5.1-2025-11-13"});
+    const model = new ChatOpenAI({
+        model: "gpt-5.1-2025-11-13",
+        apiKey: options.apiKey,
+    });
 
     const agent = createAgent({
         model: model,
