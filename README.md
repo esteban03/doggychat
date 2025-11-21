@@ -6,6 +6,8 @@
 
 This project is perfect for **learning** how to integrate language models (like OpenAI's GPT) into a modern web application with **Next.js** and the **LangChain/LangGraph** ecosystem.
 
+<img width="928" height="810" alt="image" src="https://github.com/user-attachments/assets/f655913c-2036-458d-9c2d-0f5977b890a8" />
+
 ## 🎯 What will you learn?
 
 - ✅ How to create a chat interface with React
