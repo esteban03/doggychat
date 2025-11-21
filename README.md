@@ -1,6 +1,8 @@
-# 💬 Chat con IA usando Next.js y LangGraph
+# 🐕 Chat con IA usando Next.js y LangGraph
 
 > Un proyecto simple y educativo para aprender a crear interfaces de chat con LLMs usando streaming en tiempo real.
+
+**En este ejemplo:** El chat funciona como un asesor experto en razas de perros que te ayuda a elegir el perrito perfecto según tu personalidad y estilo de vida.
 
 Este proyecto es perfecto para **aprender** cómo integrar modelos de lenguaje (como GPT de OpenAI) en una aplicación web moderna con **Next.js** y el ecosistema de **LangChain/LangGraph**.
 
@@ -46,7 +48,12 @@ npm run dev
 ```
 
 **5. Abre tu navegador:**
-Ve a [http://localhost:3000/chat](http://localhost:3000/chat) y empieza a chatear con la IA 🎉
+Ve a [http://localhost:3000/chat](http://localhost:3000/chat) y empieza a chatear con el asesor de perros 🐕🎉
+
+Prueba preguntas como:
+- "¿Qué raza de perro es buena para un apartamento pequeño?"
+- "Busco un perro activo para hacer ejercicio"
+- "¿Cuál es la mejor raza para familias con niños?"
 
 ## 📂 Estructura del Proyecto (simple)
 
@@ -132,7 +139,9 @@ stream.submit({
 
 ## 🎨 Personaliza el agente
 
-### Cambiar la personalidad del agente
+### Cambiar el tema del chat
+
+Por defecto, el agente es un **asesor de razas de perros**. Puedes cambiarlo a cualquier tema que quieras.
 
 Abre `app/api/llm/agent.ts` y modifica el `systemPrompt`:
 
@@ -140,9 +149,14 @@ Abre `app/api/llm/agent.ts` y modifica el `systemPrompt`:
 const agent = createAgent({
     model: model,
     checkpointer,
-    systemPrompt: "¡Escribe aquí la personalidad que quieras! Por ejemplo: Eres un chef experto que ayuda con recetas",
+    systemPrompt: "Eres un asistente experto en razas de perros...", // 👈 Cambia esto
 })
 ```
+
+**Ejemplos de otros temas:**
+- Chef experto: `"Eres un chef profesional que ayuda con recetas y técnicas de cocina"`
+- Tutor de programación: `"Eres un tutor paciente que enseña programación a principiantes"`
+- Asesor de viajes: `"Eres un experto en viajes que recomienda destinos personalizados"`
 
 ### Cambiar el modelo de OpenAI
 
