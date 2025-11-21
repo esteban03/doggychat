@@ -36,7 +36,7 @@ export default function Page() {
   return (
     <div className="flex flex-col h-screen max-w-4xl mx-auto">
       <div className="bg-blue-500 text-white p-4">
-        <h1 className="text-2xl font-bold">Chat Simple</h1>
+        <h1 className="text-2xl font-bold">Dog Breed Advisor</h1>
       </div>
       <ChatArea messages={messages} />
       <ChatInput onSendMessage={handleSendMessage} />
