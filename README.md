@@ -17,8 +17,8 @@ This project is perfect for **learning** how to integrate language models (like 
 ## 🛠️ Getting Started is Easy
 
 ### Prerequisites
-- Node.js installed (version 18 or higher)
-- An OpenAI account with an API key ([get one here](https://platform.openai.com/api-keys))
+- Node.js installed (I used node v23.11.0).
+- An OpenAI account with an API key.
 
 ### Installation
 
@@ -35,7 +35,7 @@ npm install
 
 **3. Configure your API key:**
 
-Create a `.env.local` file in the project root:
+Create a `.env` file in the project root:
 ```env
 OPENAI_API_KEY=sk-your_api_key_here
 ```
@@ -72,7 +72,7 @@ doggychat/
 │       ├── page.tsx          # Main chat page
 │       └── types.ts          # TypeScript types
 │
-├── .env.local               # Your API key (not uploaded to GitHub)
+├── .env               # Your API key (not uploaded to GitHub)
 └── package.json
 ```
 
@@ -162,7 +162,7 @@ const agent = createAgent({
 
 ```typescript
 const model = new ChatOpenAI({
-    model: "gpt-4", // Options: "gpt-4", "gpt-3.5-turbo", etc.
+    model: "gpt-5.1-2025-11-13", // Options: "gpt-4", "gpt-3.5-turbo", etc.
 });
 ```
 
@@ -190,13 +190,13 @@ Once you understand how it works, try adding:
 
 ## 💡 Technologies used
 
-- **Next.js 16** - Modern React framework
-- **LangChain** - To work with LLMs
-- **LangGraph** - Agents with state and memory
-- **LangGraph SDK** - Easy React integration
-- **OpenAI** - The GPT model
-- **TypeScript** - JavaScript with types
-- **Tailwind CSS** - Modern styling
+- **Next.js 16**
+- **LangChain** 
+- **LangGraph** 
+- **LangGraph SDK** 
+- **OpenAI** 
+- **TypeScript** 
+- **Tailwind CSS** 
 
 ## ⚠️ Important notes
 
